@@ -1,7 +1,484 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MEGASTORE</title></head>
-<body style="font-family:sans-serif;text-align:center;padding:40px">
-<h1>MEGASTORE</h1><p>Le site est en ligne.</p>
-</body></html>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MEGASTORE – Maquette</title>
+<style>
+:root{--d:#123B2A;--g:#198754;--bg:#FFFFFF;--gr:#F6F7F8;--tx:#252525;--card:#FFFFFF;--bd:#E6E8EA;--soft:#E7F3EC;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101412;--gr:#1A201D;--tx:#ECEFEE;--card:#171C19;--bd:#2C3430;--soft:#1F3A2C}}
+:root[data-theme="dark"]{--bg:#101412;--gr:#1A201D;--tx:#ECEFEE;--card:#171C19;--bd:#2C3430;--soft:#1F3A2C}
+*{box-sizing:border-box;margin:0}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45;padding-bottom:76px;font-size:15px}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:10px 14px;font-weight:600;background:var(--gr);color:var(--tx);transition:transform .15s,background .2s}
+button:active{transform:scale(.95)}
+input,select,textarea{font:inherit;width:100%;padding:11px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--g);border-color:transparent}
+.b{background:var(--g);color:#fff}.b3{background:var(--d);color:#fff}.b2{background:none;border:1px solid var(--g);color:var(--g)}.dg{color:#B3261E}
+.sw{background:var(--d);color:#fff;display:flex;justify-content:center;gap:4px;padding:6px;font-size:12px;position:sticky;top:0;z-index:31}
+.sw::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--d);z-index:40}
+.sw button{background:none;color:#cfe5d9;padding:5px 12px;border-radius:20px;font-size:12px}.sw button.on{background:#fff;color:var(--d)}
+header{background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:34px;z-index:30;padding:10px 0}
+.w{max-width:1100px;margin:auto;padding:0 14px}.hr{display:flex;align-items:center;gap:10px}
+.logo{font-weight:800;font-size:20px;color:var(--d);letter-spacing:-.4px;cursor:pointer;white-space:nowrap}.logo b{color:var(--g)}
+@media (prefers-color-scheme:dark){.logo{color:#fff}}
+.sr{flex:1;position:relative}.sr input{padding-left:38px;background:var(--gr);border-color:transparent}.sr svg{position:absolute;left:11px;top:11px;opacity:.55}
+.ibt{position:relative;background:none;padding:6px}.cnt{position:absolute;top:-2px;right:-2px;background:var(--g);color:#fff;border-radius:20px;font-size:10px;padding:1px 5px}
+.bump{animation:bump .45s}@keyframes bump{40%{transform:scale(1.35)}}
+nav.bn{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);display:flex;z-index:30;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav.bn a{flex:1;text-align:center;padding:8px 0 6px;font-size:11px;cursor:pointer;color:#7b8580;transition:color .2s}nav.bn a svg{display:block;margin:0 auto 2px}nav.bn a.on{color:var(--g);font-weight:700}
+.sub{display:flex;gap:8px;overflow-x:auto;padding:12px 0 2px}.sub button{white-space:nowrap;padding:7px 12px;font-size:13px;border-radius:20px}.sub button.on{background:var(--g);color:#fff}
+main{animation:vi .3s}@keyframes vi{from{opacity:0;transform:translateY(8px)}}
+h2{font-size:19px;margin:24px 0 10px;display:flex;justify-content:space-between;align-items:center}h2 small{font-size:13px;color:var(--g);font-weight:600;cursor:pointer}h1{font-size:22px;margin:18px 0 6px}
+.hero{overflow:hidden;border-radius:16px;margin-top:14px}.tr{display:flex;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.sl{min-width:100%;background:var(--d);color:#fff;padding:22px;display:flex;justify-content:space-between;align-items:center;min-height:160px}.sl:nth-child(2){background:var(--g)}.sl:nth-child(3){background:#1c5a41}
+.sl h3{font-size:21px;line-height:1.15;margin-bottom:6px}.sl p{opacity:.85;margin-bottom:12px;font-size:14px}.sl .e{font-size:70px}.sl button{background:#fff;color:var(--d)}
+.dots{display:flex;gap:5px;justify-content:center;margin-top:8px}.dots i{width:6px;height:6px;border-radius:6px;background:var(--bd);transition:.3s}.dots i.on{width:18px;background:var(--g)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}.chip{white-space:nowrap;padding:8px 14px;border-radius:20px;background:var(--gr);cursor:pointer;font-size:13px}.chip.on{background:var(--g);color:#fff}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cc{background:var(--gr);border-radius:14px;padding:14px 4px;text-align:center;font-size:13px;cursor:pointer;transition:transform .2s,background .2s}.cc:hover{transform:translateY(-3px);background:var(--soft)}.cc span{display:block;font-size:28px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.pc{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;animation:rise .45s both;animation-delay:calc(var(--i,0)*45ms)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}.pc:hover{transform:translateY(-4px);box-shadow:0 8px 20px #0001}
+.pi{height:112px;background:var(--gr);display:flex;align-items:center;justify-content:center;font-size:50px;position:relative}
+.bd{position:absolute;top:8px;left:8px;background:var(--d);color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
+.fv{position:absolute;top:6px;right:6px;background:var(--card);padding:6px;border-radius:50%;color:#7b8580;line-height:0}.fv.on{color:var(--g)}.fv.on svg{fill:var(--g)}
+.pb{padding:10px}.pn{font-weight:600;font-size:14px}.pb small{opacity:.6}.pr{margin:4px 0 8px}.pr b{color:var(--g)}.pr s{opacity:.5;font-size:12px;margin-left:5px}.pb .b{width:100%;padding:8px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px;animation:rise .4s both}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}.row:last-child{border:0}.row .f{flex:1;min-width:0}.row small{opacity:.65;display:block}
+.th{width:44px;height:44px;border-radius:10px;background:var(--gr);display:flex;align-items:center;justify-content:center;font-size:24px;flex:none}
+.kg{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.kp{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;animation:rise .4s both}.kp small{opacity:.65}.kp b{display:block;font-size:22px;color:var(--d)}
+@media (prefers-color-scheme:dark){.kp b{color:#7fd3a5}}
+.bar{display:flex;align-items:flex-end;gap:8px;height:130px;margin-top:10px}.bar div{flex:1;text-align:center;font-size:11px;opacity:.9;display:flex;flex-direction:column;justify-content:flex-end;height:100%}.bar i{display:block;background:var(--g);border-radius:6px 6px 0 0;height:0;transition:height .8s cubic-bezier(.2,.8,.2,1);margin-bottom:4px}
+.tg{padding:2px 9px;border-radius:20px;font-size:12px;font-weight:600;background:var(--soft);color:#14613a;white-space:nowrap}.tg.w{background:#F3ECD3;color:#6b5a1c}.tg.x{background:#EEE;color:#555}
+.fm{display:grid;gap:10px}.ok{background:var(--soft);color:#14613a;padding:10px 12px;border-radius:10px;font-weight:600;font-size:14px;margin:10px 0}
+@media (prefers-color-scheme:dark){.ok,.tg{color:#8fe0b2}}
+.pbig{height:230px;border-radius:16px;background:var(--gr);display:flex;align-items:center;justify-content:center;font-size:110px}.th2{display:flex;gap:8px;margin:8px 0}.th2 .th{cursor:pointer;width:52px;height:52px}.th2 .on{outline:2px solid var(--g)}
+.pg{display:grid;gap:14px}.pbar{height:8px;background:var(--gr);border-radius:8px;overflow:hidden;margin:8px 0}.pbar i{display:block;height:100%;background:var(--g);transition:width .8s}
+.chk{width:80px;height:80px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;margin:24px auto;animation:pop .55s}@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.15)}}
+.toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,24px);background:var(--d);color:#fff;padding:10px 18px;border-radius:30px;opacity:0;transition:.3s;z-index:60;pointer-events:none;font-size:14px}.toast.s{opacity:1;transform:translate(-50%,0)}
+.adm header{background:#1f1f1f;border-color:#1f1f1f}.adm .logo{color:#fff}.adm .logo b{color:#7fd3a5}
+@media(min-width:900px){body{padding-bottom:20px}nav.bn{position:sticky;top:93px;bottom:auto;justify-content:center;border-top:0;border-bottom:1px solid var(--bd);padding:0}nav.bn a{flex:none;padding:10px 22px;font-size:13px}nav.bn a svg{display:inline;vertical-align:middle;margin:0 6px 0 0}.grid{grid-template-columns:repeat(4,1fr)}.cg{grid-template-columns:repeat(5,1fr)}.kg{grid-template-columns:repeat(4,1fr)}.pg{grid-template-columns:1fr 1fr}.pbig{height:360px}.sl{padding:40px 48px;min-height:240px}.sl h3{font-size:30px}.sl .e{font-size:120px}.toast{bottom:30px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.plans{display:grid;gap:14px;margin-top:6px}@media(min-width:700px){.plans{grid-template-columns:1fr 1fr}}
+.plan{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:4px}.plan.best{border:2px solid var(--g)}
+.plan h3{font-size:17px}.plan .pp{font-size:30px;font-weight:800;color:var(--g);line-height:1.15}.plan ul{list-style:none;padding:0;margin:12px 0 16px;display:grid;gap:8px;font-size:14px;flex:1}
+.plan li{padding-left:22px;position:relative}.plan li::before{content:"✓";position:absolute;left:0;color:var(--g);font-weight:800}.plan .b{width:100%;padding:12px}
+.rb{position:absolute;top:-11px;right:16px;background:var(--g);color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px}
+.wn{background:#F3ECD3;color:#6b5a1c;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:600;margin:12px 0}@media (prefers-color-scheme:dark){.wn{background:#3a3418;color:#e8d98f}}
+.wv{display:block;text-align:center;text-decoration:none;padding:12px;border-radius:10px;font-weight:600;background:var(--g);color:#fff;cursor:pointer}.wv:active{transform:scale(.97)}
+.plan button{width:100%;padding:12px}.plan .wv{margin-top:2px}.stp small{display:block;opacity:.7;margin:4px 0 10px}
+.kg.s b{font-size:16px}.kg.s small{display:block}
+.cv{height:150px;background:var(--soft);border-radius:16px;overflow:hidden}.cv img,.lg img{width:100%;height:100%;object-fit:cover;display:block}
+.lg{width:84px;height:84px;border-radius:18px;border:3px solid var(--bg);background:var(--gr);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:36px;flex:none}
+.shh{display:flex;align-items:flex-end;gap:12px;margin:-36px 14px 0;position:relative}.shh small{opacity:.7;display:block}
+.fb{display:inline-block;text-align:center;padding:10px 14px;border:1px solid var(--g);color:var(--g);border-radius:10px;font-weight:600;cursor:pointer;font-size:14px}
+.up{display:flex;align-items:center;gap:12px;margin:10px 0}.lb{display:grid;gap:4px;font-size:13px;font-weight:600}.lb input,.lb textarea{font-weight:400}
+.ct{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:14px}.ct:last-child{border:0}.ct a{color:var(--g);font-weight:600;text-decoration:none;text-align:right;word-break:break-word}
+.empty{text-align:center;border-style:dashed;padding:22px}
+.rss{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px}
+.rsl{display:flex;flex-direction:column;align-items:center;gap:6px;width:76px;text-decoration:none;color:var(--tx);font-size:12px;font-weight:600;-webkit-tap-highlight-color:transparent}
+.rsi{width:52px;height:52px;border-radius:50%;background:var(--gr);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;color:var(--tx);flex:none;transition:transform .2s,box-shadow .2s}
+.rsi svg{width:28px;height:28px;display:block}
+.rsl:hover .rsi{transform:translateY(-3px);box-shadow:0 8px 20px #0001}.rsl:active .rsi{transform:scale(.94)}.rsl:focus-visible .rsi{outline:2px solid var(--g);outline-offset:2px}
+.rc .rsi{width:44px;height:44px}.rc .rsi svg{width:26px;height:26px}
+.rc input{margin-top:2px}.rse{color:#B3261E;font-size:13px;margin-top:6px}.rse:empty{display:none}
+.rsa{display:flex;gap:8px;margin-top:10px}.rsa .b{flex:1}.rsa .fb,.rsa .dg{padding:10px 14px;white-space:nowrap;line-height:1.45}.rsa .dg{border:1px solid var(--bd);background:none}
+.pwf{position:relative}.pwf input{padding-right:48px}
+.eye{position:absolute;right:3px;top:50%;transform:translateY(-50%);background:none;padding:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#7b8580;border-radius:10px}.eye:active{transform:translateY(-50%) scale(.9)}.eye:focus-visible{outline:2px solid var(--g)}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.pua{display:grid;gap:8px}@media(min-width:600px){.pua{grid-template-columns:auto auto;justify-content:start}}
+.pup{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--g);color:#fff;border-radius:10px;padding:14px 18px;font-weight:700;cursor:pointer;text-align:center;transition:transform .15s;user-select:none;-webkit-tap-highlight-color:transparent}.pup:active{transform:scale(.97)}
+.pup.o{background:none;border:1px solid var(--g);color:var(--g)}
+.pup:focus-within,.pbt:focus-within{outline:2px solid var(--g);outline-offset:2px}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}@media(min-width:600px){.pgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+.ptl{border:1px solid var(--bd);border-radius:12px;overflow:hidden;background:var(--card)}.ptl.main{border:2px solid var(--g)}
+.ptl .im{position:relative;aspect-ratio:1/1;background:var(--gr)}.ptl img{width:100%;height:100%;object-fit:cover;display:block}
+.pta{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px}.pbt.f{grid-column:1/-1}
+.pbt{position:relative;display:flex;align-items:center;justify-content:center;height:38px;min-width:38px;padding:0 8px;border-radius:10px;background:var(--gr);color:var(--tx);font-weight:600;font-size:13px;cursor:pointer;border:0;white-space:nowrap;user-select:none}.pbt.on{background:var(--g);color:#fff;opacity:1}.pbt.dg{color:#B3261E}.pta .pbt{font-size:12.5px;padding:0 4px}.pbt:disabled{cursor:default}
+.pi img,.pbig img,.th img{width:100%;height:100%;object-fit:cover;display:block}.pbig img{object-fit:contain}.th,.pbig{overflow:hidden}
+</style></head><body>
+<div class="sw" id="sw"></div>
+<header><div class="w hr"><div class="logo" onclick="go('c-accueil')">MEGA<b>STORE</b></div><div class="sr" id="sr"></div><span id="ub"></span><button class="ibt" id="cb" onclick="go('c-panier')" aria-label="Panier"></button></div></header>
+<nav class="bn" id="bn"></nav>
+<main class="w" id="app"></main>
+<div class="toast" id="t"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const IC={home:'<path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/>',grid:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>',heart:'<path d="M12 21s-8-5-8-11a4.5 4.5 0 018-3 4.5 4.5 0 018 3c0 6-8 11-8 11z"/>',bag:'<path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 016 0v2"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/>',box:'<path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/>',chart:'<path d="M4 20V4M4 20h16M8 16v-5M13 16V7M18 16v-8"/>',store:'<path d="M3 9l2-5h14l2 5M4 9v11h16V9M9 20v-6h6v6"/>',cog:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',check:'<path d="M5 12l5 5 9-10"/>'};
+const ic=(n,s=22)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
+const F=n=>n.toLocaleString("fr-FR")+" FCFA";
+const $=s=>document.querySelector(s);const go=h=>{location.hash=h};
+let P=[];const G=id=>P.find(p=>p.id==id);
+const SHN=()=>[...new Set(P.map(p=>p.s))];
+let CT=[["Téléphones","📱"],["Mode","👗"],["Chaussures","👟"],["Beauté","🧴"],["Maison","🏠"],["Sport","⚽"]];
+let cart={},fav={},sel=0,shop="",shopId="",qty=1,qs="",kf="Tous",cur=0,tmr,vv="Noir",pic=0,U=null,ACC=[],nxt="",nid=1,rty="client";
+let H=[];
+let VP=[];
+let O=[];
+let AC=[];
+let AV=[];
+let period=0;
+const SUPA_URL="https://buimetwhvzwxsdgatyue.supabase.co",SUPA_KEY="sb_publishable_qmilKAs936P7kfJiFFF7xQ_5VI5LkjN";
+const sb=(SUPA_URL&&SUPA_KEY&&window.supabase)?supabase.createClient(SUPA_URL,SUPA_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:"pkce"}}):null;
+const LEGACY=false;/* anciennes tables (produits, boutiques, abonnements) : désactivées jusqu'aux étapes 8C-2 et 8C-3 */
+const PL={mensuelle:{n:"Abonnement mensuel",p:3500,m:2,du:"2 mois",b:"Choisir l’abonnement mensuel",wave:"https://pay.wave.com/m/M_ci_4B8TDo5cxIaI/c/ci/?amount=3500"},annuelle:{n:"Abonnement annuel",p:20000,m:12,du:"1 an (12 mois)",b:"Choisir l’abonnement annuel",wave:"https://pay.wave.com/m/M_ci_4B8TDo5cxIaI/c/ci/?amount=20000"}};
+const ADMIN_WA="";/* ← facultatif : numéro WhatsApp de l’administrateur au format international sans « + » (ex. 2250700000000) */
+const PS={en_attente:"Paiement en attente",declare:"Paiement déclaré, à vérifier",confirme:"Payé",refuse:"Refusé"},PAY_ON=true,DAY=864e5;
+let SUBS=[],psel="",SL=0;
+const waveUrl=k=>{const q=PL[k];return q&&q.wave.endsWith("amount="+q.p)?q.wave:""};
+const open_=x=>x.statut_paiement==="en_attente"||x.statut_paiement==="declare";
+const dt=d=>d?new Date(d).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}):"—";
+const addM=(d,m)=>{const x=new Date(d);x.setMonth(x.getMonth()+m);return x};
+function acc(u=U){const now=Date.now(),mine=SUBS.filter(x=>x.vendeur_id===u.id),paid=mine.filter(x=>x.statut_paiement==="confirme"&&x.date_expiration),cur=paid.find(x=>new Date(x.date_debut)<=now&&new Date(x.date_expiration)>now),fin=paid.reduce((m,x)=>Math.max(m,+new Date(x.date_expiration)),0),pend=mine.find(open_),j=e=>Math.max(0,Math.ceil((e-now)/DAY));
+if(cur)return{ok:true,st:"Actif",plan:PL[cur.formule].n,debut:cur.date_debut,fin,j:j(fin),pend,paid:true};
+if(u.trialEnd>now)return{ok:true,st:"Actif",plan:"Essai gratuit (3 jours)",debut:u.trialStart,fin:u.trialEnd,j:j(u.trialEnd),pend};
+if(pend)return{ok:false,st:"En attente de paiement",plan:PL[pend.formule].n,debut:null,fin:fin||u.trialEnd,j:0,pend};
+const last=paid.sort((a,b)=>new Date(b.date_expiration)-new Date(a.date_expiration))[0];
+return{ok:false,st:"Expiré",plan:last?PL[last.formule].n:"Essai gratuit (terminé)",debut:last?last.date_debut:u.trialStart,fin:fin||u.trialEnd,j:0}}
+const okV=()=>{if(U&&U.type==="vendeur"&&acc().ok)return true;toast("Abonnement requis pour gérer votre boutique");go("v-abo");return false};
+async function subsLoad(){if(!sb||!LEGACY)return;const{data,error}=await sb.from("abonnements").select("*").order("created_at",{ascending:false});if(error){toast("Chargement des abonnements impossible");return}SUBS=data.map(x=>({...x,vendeur_nom:esc(x.vendeur_nom),reference_paiement:esc(x.reference_paiement)}));render()}
+async function ensureReq(k){const ex=SUBS.find(x=>x.vendeur_id===U.id&&open_(x));if(ex)return ex;const q=PL[k];if(!q)return null;
+const rec={vendeur_id:U.id,vendeur_nom:U.shop,formule:k,prix:q.p,prix_paye:0,moyen_paiement:"wave",date_debut:null,date_expiration:null,statut_paiement:"en_attente",statut_abonnement:"en_attente"};
+if(sb){const{data,error}=await sb.from("abonnements").insert(rec).select().single();if(error){toast("Échec de l’enregistrement");return null}const r2={...data,vendeur_nom:esc(data.vendeur_nom)};SUBS.unshift(r2);return r2}
+const r={...rec,vendeur_nom:esc(rec.vendeur_nom),id:"S-"+Date.now(),created_at:new Date().toISOString()};SUBS.unshift(r);return r}
+async function wavePay(e,k){if(!U||U.type!=="vendeur"||!waveUrl(k)){e.preventDefault();toast(waveUrl(k)?"Connectez-vous avec un compte vendeur":"Lien de paiement indisponible");return}
+const ex=SUBS.find(x=>x.vendeur_id===U.id&&open_(x));
+if(ex&&ex.formule!==k){e.preventDefault();toast("Une demande « "+PL[ex.formule].n+" » est déjà en cours. Annulez-la pour changer de formule.");return}
+psel=k;await ensureReq(k);go("v-souscrire");render()}
+async function subscribe(){if(!U||U.type!=="vendeur"||!PL[psel])return;const ex=SUBS.find(x=>x.vendeur_id===U.id&&open_(x));if(ex&&ex.formule!==psel){toast("Une autre demande est déjà en cours");return}
+if(await ensureReq(psel)){toast("Demande enregistrée : paiement en attente");go("v-abo")}}
+async function declare(){const k=psel;if(!U||U.type!=="vendeur"||!PL[k])return;const b=$("#dc"),ref=($("#rf")||{value:""}).value.trim();b.disabled=true;
+const ex=SUBS.find(x=>x.vendeur_id===U.id&&open_(x));if(ex&&ex.formule!==k){b.disabled=false;toast("Une autre demande est déjà en cours");return}
+const x=await ensureReq(k);if(!x){b.disabled=false;return}
+if(x.statut_paiement!=="declare"){if(sb){const{error}=await sb.rpc("declarer_paiement",{p_id:x.id,p_ref:ref||null});if(error){b.disabled=false;toast("Échec de l’enregistrement");return}}
+Object.assign(x,{statut_paiement:"declare",reference_paiement:esc(ref)||null,declare_le:new Date().toISOString()})}
+toast("Paiement déclaré : en attente de vérification par l’administrateur");go("v-abo");render()}
+async function cancelReq(id){const x=SUBS.find(y=>y.id===id);if(!x||x.statut_paiement!=="en_attente"||!confirm("Annuler cette demande ?"))return;if(sb){const{error}=await sb.from("abonnements").delete().eq("id",id);if(error){toast("Annulation impossible");return}}SUBS=SUBS.filter(y=>y.id!==id);toast("Demande annulée");render()}
+async function subDec(id,ok){const x=SUBS.find(y=>y.id===id);if(!x||!open_(x))return;const now=Date.now(),ends=SUBS.filter(y=>y.vendeur_id===x.vendeur_id&&y.statut_paiement==="confirme"&&new Date(y.date_expiration)>now).map(y=>+new Date(y.date_expiration)),st=Math.max(now,...ends),
+patch=ok?{statut_paiement:"confirme",statut_abonnement:"actif",prix_paye:x.prix,confirme_le:new Date().toISOString(),date_debut:new Date(st).toISOString(),date_expiration:addM(st,PL[x.formule].m).toISOString()}:{statut_paiement:"refuse",statut_abonnement:"annule"};
+if(sb){const{error}=await sb.from("abonnements").update(patch).eq("id",id);if(error){toast("Action refusée");return}}
+Object.assign(x,patch);toast(ok?"Paiement confirmé, abonnement activé":"Demande refusée");render()}
+const proof=()=>`<p style="font-size:14px">Après votre paiement, transmettez votre <b>preuve de paiement</b> (capture d’écran de la transaction Wave) à l’administrateur MEGASTORE.</p>${ADMIN_WA?`<a class="wv" style="margin-top:8px;background:none;border:1px solid var(--g);color:var(--g)" href="https://wa.me/${ADMIN_WA}" target="_blank" rel="noopener noreferrer">Envoyer ma preuve sur WhatsApp</a>`:""}`;
+const wn=()=>`<div class="wn">L’abonnement est activé uniquement après vérification et confirmation du paiement par l’administrateur. Ouvrir le lien Wave ou appuyer sur « J’ai effectué mon paiement » ne l’active pas.</div>`;
+function subCard(here){const a=acc(),d=a.pend,dc=d&&d.statut_paiement==="declare";return `<div class="card"><small>Formule actuelle</small><h2 style="margin:2px 0 10px">${a.plan}</h2><div class="kg s">${kp("Date de début",dt(a.debut))}${kp("Date d’expiration",dt(a.fin))}${kp("Jours restants",a.j)}<div class="kp"><small>Statut</small><div style="margin-top:6px">${tg(a.st)}</div></div></div>${d?(dc?`<div class="wn">Paiement « ${PL[d.formule].n} » déclaré le ${dt(d.declare_le)}${d.reference_paiement?" (référence "+d.reference_paiement+")":""}. En attente de vérification par l’administrateur. Transmettez-lui votre preuve de paiement (capture d’écran Wave) si ce n’est pas déjà fait.</div>`:`<div class="wn">Demande « ${PL[d.formule].n} » créée le ${dt(d.created_at)}. Après avoir payé avec Wave, appuyez sur « J’ai effectué mon paiement ».<div style="display:flex;gap:8px;margin-top:8px"><button class="b" onclick="psel='${d.formule}';go('v-souscrire')">Continuer</button><button class="dg" onclick="cancelReq('${d.id}')">Annuler la demande</button></div></div>`):""}${!a.ok&&!d?`<div class="wn">Votre accès à la gestion de la boutique et des produits est suspendu. Vos clients peuvent toujours acheter. Renouvelez pour le rétablir.</div>`:""}<button class="b" style="width:100%;margin-top:10px" onclick="${here?"$('.plans').scrollIntoView({behavior:'smooth'})":"go('v-abo')"}">Renouveler mon abonnement</button></div>`}
+const planCard=k=>{const q=PL[k],best=k==="annuelle";return `<div class="plan ${best?"best":""}">${best?`<span class="rb">Meilleure offre</span>`:""}<h3>${q.n}</h3><div class="pp">${F(q.p)}</div><small style="opacity:.65">pour ${q.du} · soit ${F(Math.round(q.p/q.m))} par mois</small><ul><li>Accès aux fonctionnalités vendeur pendant ${q.du}</li><li>Gestion de la boutique et des produits</li><li>Suivi des commandes et statistiques</li></ul><a class="wv" href="${waveUrl(k)}" target="_blank" rel="noopener noreferrer" onclick="wavePay(event,'${k}')">Payer avec Wave</a><button class="b2" style="margin-top:8px" onclick="psel='${k}';go('v-souscrire')">${q.b}</button></div>`};
+let SH=[],PV=null,IMG={};
+const esc=t=>String(t==null?"":t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeImg=u=>/^(https:\/\/|data:image\/|blob:)/.test(u||"")?esc(u):"";
+const shopOf=id=>SH.find(x=>x.owner_id===id);
+const SHL=()=>[...new Set(P.filter(p=>p.vid).map(p=>p.vid))];
+const own=i=>!!(VP[i]&&U&&VP[i].vid===U.id);
+const waNum=(n,pays)=>{const t=String(n||"").trim();let d=t.replace(/\D/g,"");if(t.slice(0,2)==="00")d=d.slice(2);if(!d)return"";if(t[0]!=="+"&&t.slice(0,2)!=="00"&&/ivoire/i.test(pays||"")&&d.length===10&&d[0]==="0")d="225"+d;return d};
+/* ===== Réseaux sociaux : liens des vendeurs (TikTok, Instagram, Facebook, WhatsApp) ===== */
+let RS={},RSD={};
+const NET={
+tiktok:{n:"TikTok",h:"Lien de votre profil ou @nom d’utilisateur",ph:"https://www.tiktok.com/@votrenom"},
+instagram:{n:"Instagram",h:"Lien de votre profil ou @nom d’utilisateur",ph:"https://www.instagram.com/votrenom"},
+facebook:{n:"Facebook",h:"Lien de votre page ou de votre profil",ph:"https://www.facebook.com/votrepage"},
+whatsapp:{n:"WhatsApp",h:"Numéro au format international ou lien wa.me",ph:"+225 07 00 00 00 00"}};
+const RSH={tiktok:/^((www|m|vm|vt)\.)?tiktok\.com$/,instagram:/^(www\.)?(instagram\.com|instagr\.am)$/,facebook:/^((www|m|web|mbasic)\.)?facebook\.com$|^(www\.)?fb\.(com|me)$/};
+const TKP="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z";
+const FBP="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z";
+const WAP="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z";
+function LG(k,s=28){const o={
+tiktok:`<g transform="translate(1.2 1.2) scale(.9)"><path transform="translate(-.8 -.8)" fill="#25F4EE" d="${TKP}"/><path transform="translate(.8 .8)" fill="#FE2C55" d="${TKP}"/><path fill="currentColor" d="${TKP}"/></g>`,
+instagram:`<defs><linearGradient id="rsig" gradientUnits="userSpaceOnUse" x1="2" y1="23" x2="22" y2="1"><stop offset="0" stop-color="#FEDA75"/><stop offset=".25" stop-color="#FA7E1E"/><stop offset=".5" stop-color="#D62976"/><stop offset=".75" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6.5" fill="url(#rsig)"/><rect x="5" y="5" width="14" height="14" rx="4.2" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="16.4" cy="7.6" r="1" fill="#fff"/>`,
+facebook:`<path fill="#1877F2" d="${FBP}"/>`,
+whatsapp:`<path fill="#25D366" d="${WAP}"/>`};
+return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${o[k]||""}</svg>`}
+/* Valide et normalise un lien : renvoie {ok:true,url} (https uniquement) ou {ok:false,m:message} */
+function rsNorm(k,raw,pays){const t=String(raw==null?"":raw).trim(),bad=m=>({ok:false,m});
+if(!NET[k])return bad("Réseau inconnu");
+if(!t)return bad("Saisissez un lien");
+if(k==="whatsapp"){const m=/^(?:https?:\/\/)?(?:wa\.me\/|api\.whatsapp\.com\/send\/?\?(?:[^#\s]*&)?phone=|(?:www\.)?whatsapp\.com\/send\?(?:[^#\s]*&)?phone=)\+?(\d+)/i.exec(t);
+const d=m?m[1]:(/^[+\d][\d\s.()-]*$/.test(t)?waNum(t,pays):"");
+if(!/^[1-9]\d{7,14}$/.test(d||""))return bad("Numéro WhatsApp invalide : utilisez le format international (ex. +225 07 00 00 00 00)");
+return{ok:true,url:"https://wa.me/"+d}}
+if(/\s/.test(t))return bad("Le lien ne doit pas contenir d’espace");
+let h=t;
+if(!/^[a-z][a-z0-9+.-]*:/i.test(h)){
+if(!h.includes("/")&&k!=="facebook"&&/^@?[A-Za-z0-9._]{2,30}$/.test(h)&&!/^(www\.)?(tiktok|instagram|instagr|facebook|fb)\./i.test(h)){const u=h.replace(/^@/,"");return{ok:true,url:k==="tiktok"?"https://www.tiktok.com/@"+u:"https://www.instagram.com/"+u+"/"}}
+h="https://"+h}
+let u;try{u=new URL(h)}catch(e){return bad("Lien invalide")}
+if(u.protocol!=="https:"&&u.protocol!=="http:")return bad("Le lien doit commencer par https://");
+if(u.username||u.password||u.port)return bad("Lien invalide");
+const host=u.hostname.toLowerCase();
+if(!RSH[k].test(host))return bad("Ce lien ne correspond pas à "+NET[k].n);
+if(u.pathname.length<2)return bad("Collez le lien complet de votre profil ou de votre page");
+const url="https://"+host+u.pathname+u.search;
+if(url.length>300)return bad("Lien trop long");
+return{ok:true,url}}
+const rsShow=(k,v)=>{if(k!=="whatsapp")return v||"";const m=/wa\.me\/(\d+)/.exec(v||"");return m?"+"+m[1]:(v||"")};
+/* Section publique « Retrouvez-nous sur nos réseaux » : seuls les réseaux renseignés et valides sont affichés */
+function socialBar(id){const r=RS[id];if(!r)return"";const it=Object.keys(NET).map(k=>{if(!r[k])return"";const n=rsNorm(k,r[k],"");if(!n.ok)return"";
+const href=k==="whatsapp"?n.url+"?text="+encodeURIComponent("Bonjour, je vous contacte depuis MEGASTORE."):n.url;
+return `<a class="rsl" href="${esc(href)}" target="_blank" rel="noopener noreferrer" aria-label="${NET[k].n}"><span class="rsi">${LG(k)}</span>${NET[k].n}</a>`}).join("");
+return it?`<div class="card" style="margin-top:12px"><b>Retrouvez-nous sur nos réseaux</b><div class="rss">${it}</div></div>`:""}
+function rsKeep(){RSD._u=U.id;Object.keys(NET).forEach(k=>{const e=$("#rs_"+k);if(e)RSD[k]=e.value})}
+function rsErr(k,m){const e=$("#rse_"+k);if(e)e.textContent=m||""}
+function rsPage(){const r=RS[U.id]||{},sh=shopOf(U.id),d=RSD._u===U.id?RSD:{};
+const cards=Object.keys(NET).map(k=>{const n=NET[k],has=!!r[k],val=d[k]!==undefined?d[k]:(has?rsShow(k,r[k]):""),t=has?rsNorm(k,r[k],""):null;
+return `<div class="card rc"><div class="row" style="border:0;padding:0 0 10px"><span class="rsi">${LG(k,26)}</span><div class="f"><b>${n.n}</b><small>${n.h}</small></div>${has?tg("Enregistré"):`<span class="tg x">Non renseigné</span>`}</div><input id="rs_${k}" value="${esc(val)}" placeholder="${esc(n.ph)}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Lien ${n.n}" oninput="rsErr('${k}')" onkeydown="if(event.key==='Enter')rsSave('${k}',$('#rsb_${k}'))"><div class="rse" id="rse_${k}" role="alert"></div><div class="rsa"><button class="b" id="rsb_${k}" onclick="rsSave('${k}',this)">Enregistrer</button>${t&&t.ok?`<a class="fb" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">Tester</a>`:""}${has?`<button class="dg" onclick="rsDel('${k}')">Supprimer</button>`:""}</div></div>`}).join("");
+return `<h1>Réseaux sociaux</h1><p style="opacity:.7;margin-bottom:12px">Ajoutez vos liens : ils s’affichent automatiquement sur votre page boutique, dans la section « Retrouvez-nous sur nos réseaux ». Aucun réseau n’est obligatoire.</p>${!sh?`<div class="wn">Enregistrez d’abord votre boutique pour y associer vos réseaux.<div style="margin-top:8px"><button class="b" onclick="go('v-boutique')">Configurer ma boutique</button></div></div>`:!sh.publie?`<div class="wn">Votre boutique n’est pas encore publiée : vos réseaux seront visibles des clients dès sa publication.</div>`:""}${cards}${sh&&sh.publie?`<button class="b2" style="width:100%" onclick="go('c-boutique-'+U.id)">Voir ma page boutique publique</button>`:""}`}
+async function rsSave(k,btn){if(!okV())return;
+if(!shopOf(U.id)){rsErr(k,"Enregistrez d’abord votre boutique (onglet « Ma boutique »).");return}
+const el=$("#rs_"+k);if(!el)return;const r=rsNorm(k,el.value,(shopOf(U.id)||{}).pays||"Côte d’Ivoire");
+if(!r.ok){rsErr(k,r.m);el.focus();return}
+if(btn)btn.disabled=true;const now=new Date().toISOString();let row={...(RS[U.id]||{owner_id:U.id}),[k]:r.url,updated_at:now};
+if(sb){const{data,error}=await sb.from("reseaux_sociaux").upsert({owner_id:U.id,[k]:r.url,updated_at:now},{onConflict:"owner_id"}).select().single();
+if(error){if(btn)btn.disabled=false;rsErr(k,"Enregistrement impossible. Réessayez.");return}row=data}
+RS[U.id]=row;rsKeep();delete RSD[k];toast("Lien "+NET[k].n+" enregistré");render()}
+async function rsDel(k){if(!okV())return;const cur=RS[U.id];if(!cur||!cur[k])return;if(!confirm("Supprimer le lien "+NET[k].n+" ?"))return;
+const now=new Date().toISOString();
+if(sb){const{error}=await sb.from("reseaux_sociaux").update({[k]:null,updated_at:now}).eq("owner_id",U.id);if(error){toast("Suppression impossible");return}}
+cur[k]=null;cur.updated_at=now;rsKeep();delete RSD[k];toast("Lien "+NET[k].n+" supprimé");render()}
+/* ===== Mot de passe : œil afficher / masquer ===== */
+IC.eye='<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>';
+IC.eyeoff='<path d="M3 3l18 18"/><path d="M10.6 5.1A10 10 0 0112 5c6.4 0 10 7 10 7a17 17 0 01-3.2 4.2M6.6 6.7A17 17 0 002 12s3.6 7 10 7a9.8 9.8 0 004.3-1"/><path d="M9.9 9.9a3 3 0 004.2 4.2"/>';
+const pw=(id,ph,ac)=>`<div class="pwf"><input id="${id}" type="password" placeholder="${ph}" autocomplete="${ac}" autocapitalize="off" autocorrect="off" spellcheck="false"><button type="button" class="eye" onmousedown="event.preventDefault()" onclick="pwTog(this)" aria-label="Afficher le mot de passe" aria-pressed="false">${ic("eye",22)}</button></div>`;
+function pwTog(b){const i=b.parentNode.querySelector("input"),show=i.type==="password";i.type=show?"text":"password";b.innerHTML=ic(show?"eyeoff":"eye",22);b.setAttribute("aria-pressed",String(show));b.setAttribute("aria-label",show?"Masquer le mot de passe":"Afficher le mot de passe")}
+IC.addph='<path d="M12 5v14M5 12h14"/>';
+/* ===== Photos produit : import réel (max 5), aperçu, principale, remplacer, supprimer, Supabase Storage ===== */
+let PH=[],PHU="",PHP=[],PHN=1;const PHMAX=5;
+const thm=p=>p&&p.im&&p.im[0]?`<img src="${p.im[0]}" alt="${p.n||""}" loading="lazy">`:(p?p.e:"");
+function gal(p){const im=p.im||[];
+if(!im.length)return `<div class="pbig">${p.e}</div><div class="th2">${[0,1,2].map(i=>`<div class="th ${i===pic?"on":""}" onclick="pic=${i};render()">${p.e}</div>`).join("")}</div>`;
+const k=Math.min(pic,im.length-1);
+return `<div class="pbig"><img src="${im[k]}" alt="${p.n}"></div>${im.length>1?`<div class="th2">${im.map((u,i)=>`<div class="th ${i===k?"on":""}" role="button" tabindex="0" aria-label="Photo ${i+1}" onclick="pic=${i};render()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();pic=${i};render()}"><img src="${u}" alt="Photo ${i+1}"></div>`).join("")}</div>`:""}`}
+function phClear(keep){PH.forEach(x=>URL.revokeObjectURL(x.url));PH=[];PHP=[]}
+function phHtml(){if(PHU!==(U&&U.id)){phClear();PHU=U?U.id:""}
+const n=PH.length,cam=window.matchMedia&&matchMedia("(pointer:coarse)").matches;
+const tiles=PH.map((x,i)=>`<div class="ptl ${i===0?"main":""}"><div class="im"><img src="${x.url}" alt="Photo ${i+1}">${i===0?`<span class="bd">Photo principale</span>`:""}</div><div class="pta"><button type="button" class="pbt f ${i===0?"on":""}" ${i===0?"disabled":`onclick="phMain(${i})"`} aria-label="${i===0?"Photo principale":"Définir comme photo principale"}">${i===0?"✓":"★"} Principale</button><label class="pbt" title="Remplacer cette photo" aria-label="Remplacer la photo ${i+1}">Remplacer<input class="vh" type="file" accept="image/*" onchange="phAdd(this,${i})"></label><button type="button" class="pbt dg" onclick="phDel(${i})" title="Supprimer cette photo" aria-label="Supprimer la photo ${i+1}">Supprimer</button></div></div>`).join("");
+return `<div class="card"><div class="row" style="border:0;padding:0 0 8px"><b class="f">Photos du produit</b><small>${n} / ${PHMAX}</small></div>${n<PHMAX?`<div class="pua"><label class="pup">${ic("addph",20)} Ajouter des photos<input class="vh" type="file" accept="image/*" multiple onchange="phAdd(this)"></label>${cam?`<label class="pup o">Prendre une photo<input class="vh" type="file" accept="image/*" capture="environment" onchange="phAdd(this)"></label>`:""}</div>`:`<div class="ok" style="margin:0">Maximum atteint : ${PHMAX} photos</div>`}<div id="ph_msg" class="rse" role="status"></div>${sb?"":`<small style="display:block;margin-top:6px;opacity:.75">Mode démo : Supabase n’est pas configuré, les photos ne seront pas conservées après actualisation de la page.</small>`}${n?`<div class="pgrid">${tiles}</div><small style="opacity:.65">La première photo est la photo principale affichée dans le catalogue.</small>`:`<small style="opacity:.65;display:block;margin-top:8px">Jusqu’à ${PHMAX} photos (JPEG, PNG ou WebP). Choisissez-les dans votre photothèque, votre galerie ou vos fichiers${cam?", ou prenez-les avec l’appareil photo":""}.</small>`}</div>`}
+function phRender(){const z=$("#ph_zone");if(z)z.innerHTML=phHtml()}
+function phMsg(m){const e=$("#ph_msg");if(e)e.textContent=m||""}
+let phBusy=false;
+async function phAdd(inp,rep){const fs=[...(inp.files||[])];if(!fs.length)return;
+const rz=()=>{try{inp.value=""}catch(e){}};
+if(phBusy){rz();phMsg("Traitement en cours, patientez un instant…");return}
+const isRep=rep!==undefined&&rep>=0&&rep<PH.length,room=PHMAX-PH.length;
+if(!isRep&&room<=0){rz();phMsg("5 photos maximum");return}
+const take=isRep?fs.slice(0,1):fs.slice(0,room),msgs=[];if(!isRep&&fs.length>room)msgs.push("5 photos maximum : seules "+take.length+" photo(s) ont été ajoutées.");
+phBusy=true;phMsg("Préparation des photos…");const out=[];
+try{for(const f of take){try{let b=await imgProc(f,1400,.85);if(b.size>2e6)b=await imgProc(f,1000,.7);if(b.size>2e6)throw imgErr("big");out.push({id:PHN++,blob:b,url:URL.createObjectURL(b)})}catch(e){msgs.push(imgWhy(e,f.name))}}}
+finally{phBusy=false;rz()}
+if(isRep){if(out[0]){URL.revokeObjectURL(PH[rep].url);PH[rep]=out[0]}}else PH.push(...out);
+phRender();phMsg(msgs.join(" "))}
+function phMain(i){if(i<=0||i>=PH.length)return;PH.unshift(PH.splice(i,1)[0]);phRender()}
+function phDel(i){if(!PH[i])return;URL.revokeObjectURL(PH[i].url);PH.splice(i,1);phRender()}
+async function phUpload(){if(!PH.length)return[];const out=[],base=U.id+"/"+Date.now().toString(36)+Math.random().toString(36).slice(2,8);PHP=[];
+for(let i=0;i<PH.length;i++){const bt=$("#pbtn");if(bt)bt.textContent="Envoi des photos "+(i+1)+"/"+PH.length+"…";
+if(!sb){out.push(await b2d(PH[i].blob));continue}
+const pth=base+"/"+(i+1)+".jpg",{error}=await sb.storage.from("produits").upload(pth,PH[i].blob,{contentType:"image/jpeg",cacheControl:"31536000"});
+if(error){await phClean();throw error}PHP.push(pth);out.push(sb.storage.from("produits").getPublicUrl(pth).data.publicUrl)}
+return out}
+async function phClean(){if(sb&&PHP.length){try{await sb.storage.from("produits").remove(PHP)}catch(e){}}PHP=[]}
+async function addp(){if(!okV())return;const n=$("#pn").value.trim(),p=+$("#pp").value,o=+$("#po").value;if(!n||!p){toast("Nom et prix requis");return}const st=+$("#ps").value||1,k=$("#pk").value,d=$("#pd").value,ap=o>p?o:0;let id=nid++;
+const bt=$("#pbtn"),rs=()=>{if(bt){bt.disabled=false;bt.textContent="Publier le produit"}};if(bt)bt.disabled=true;
+let im=[];try{im=await phUpload()}catch(e){rs();toast(supaWhy(e,"produits"));return}
+if(bt)bt.textContent="Publication…";
+if(sb){const rec={vendeur_id:U.id,boutique_nom:U.shop,nom:n,prix:p,ancien_prix:ap,stock:st,categorie:k,description:d,emoji:"📦"};if(im.length)rec.images=im;
+const{data,error}=await sb.from("produits").insert(rec).select().single();if(error){await phClean();rs();toast(/images/.test(error.message||"")?"Colonne « images » manquante : exécutez le script SQL photos":"Publication impossible");return}id=data.id}
+const sim=im.map(safeImg).filter(Boolean);
+P.unshift({id,n:esc(n),p,o:ap,e:"📦",s:esc(U.shop),k,d:esc(d),vid:U.id,im:sim});VP.unshift({pid:id,vid:U.id,n:esc(n),p,st,e:"📦",im:sim});phClear();toast("Produit publié");go("v-produits")}
+const IMX={logo:[512,.9],cover:[1400,.85]};
+/* ===== Lecture robuste des images : format détecté par signature binaire (jamais par extension), HEIC converti, erreurs précises ===== */
+const IMGMIME={jpeg:"image/jpeg",png:"image/png",webp:"image/webp",gif:"image/gif",bmp:"image/bmp",avif:"image/avif",heic:"image/heic"};
+function imgErr(code,fmt){const e=new Error(code);e.code=code;e.fmt=fmt||"";return e}
+async function imgSniff(f){if(!f.size)return"empty";
+const h=new Uint8Array(await f.slice(0,32).arrayBuffer());if(!h.length)return"empty";const s=String.fromCharCode(...h);
+if(h[0]===255&&h[1]===216&&h[2]===255)return"jpeg";
+if(s.startsWith("\x89PNG\r\n\x1a\n"))return"png";
+if(s.slice(0,4)==="RIFF"&&s.slice(8,12)==="WEBP")return"webp";
+if(s.startsWith("GIF8"))return"gif";
+if(s.startsWith("BM"))return"bmp";
+if(s.slice(4,8)==="ftyp"){const b=s.slice(8,12);if(/^(heic|heix|hevc|hevx|heim|heis|hevm|hevs|mif1|msf1)$/.test(b))return"heic";if(/^avi[fs]$/.test(b))return"avif"}
+return""}
+async function imgDecode(blob){
+if(window.createImageBitmap){
+for(const o of [{imageOrientation:"from-image"},undefined]){try{const b=await createImageBitmap(blob,o);if(b.width&&b.height)return{src:b,w:b.width,h:b.height,done(){try{b.close()}catch(e){}}}}catch(e){}}}
+return new Promise((ok,ko)=>{const u=URL.createObjectURL(blob),i=new Image(),end=()=>URL.revokeObjectURL(u);
+i.onload=()=>{const w=i.naturalWidth||i.width,h=i.naturalHeight||i.height;if(!w||!h){end();ko(new Error("decode"));return}ok({src:i,w,h,done:end})};
+i.onerror=()=>{end();ko(new Error("decode"))};i.src=u})}
+let heicP=null;
+function heicLib(){return heicP||(heicP=new Promise((ok,ko)=>{if(window.heic2any)return ok(window.heic2any);const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js";s.onload=()=>window.heic2any?ok(window.heic2any):(heicP=null,ko());s.onerror=()=>{heicP=null;ko()};document.head.appendChild(s)}))}
+async function heicToJpeg(f){let lib;try{lib=await heicLib()}catch(e){throw imgErr("heic")}
+try{const r=await lib({blob:f,toType:"image/jpeg",quality:.9});return Array.isArray(r)?r[0]:r}catch(e){throw imgErr("corrupt","heic")}}
+async function imgProc(f,max,q){
+const fmt=await imgSniff(f);if(fmt==="empty")throw imgErr("empty");
+let blob=f.slice(0,f.size,IMGMIME[fmt]||f.type||"application/octet-stream"),dec;
+try{dec=await imgDecode(blob)}catch(e){
+if(fmt==="heic"){blob=await heicToJpeg(f);try{dec=await imgDecode(blob)}catch(e2){throw imgErr("corrupt","heic")}}
+else throw imgErr(fmt?"corrupt":"unsupported",fmt)}
+const k=Math.min(1,max/Math.max(dec.w,dec.h)),W=Math.max(1,Math.round(dec.w*k)),Hh=Math.max(1,Math.round(dec.h*k)),c=document.createElement("canvas");
+c.width=W;c.height=Hh;const x=c.getContext("2d");if(!x){dec.done();throw imgErr("canvas")}
+x.fillStyle="#fff";x.fillRect(0,0,W,Hh);x.imageSmoothingQuality="high";
+try{x.drawImage(dec.src,0,0,W,Hh)}catch(e){dec.done();throw imgErr("canvas")}
+dec.done();
+let out=await new Promise(r=>{try{c.toBlob(r,"image/jpeg",q)}catch(e){r(null)}});
+if(!out){try{const d=c.toDataURL("image/jpeg",q),bs=atob(d.split(",")[1]),a=new Uint8Array(bs.length);for(let i=0;i<bs.length;i++)a[i]=bs.charCodeAt(i);out=new Blob([a],{type:"image/jpeg"})}catch(e){}}
+c.width=c.height=0;
+if(!out||out.size<500||(await imgSniff(out))!=="jpeg")throw imgErr("canvas");
+try{const v=await imgDecode(out);const ok=v.w===W&&v.h===Hh;v.done();if(!ok)throw 0}catch(e){throw imgErr("canvas")}
+return out}
+function imgWhy(e,name){const n="« "+(name||"fichier")+" »",f={jpeg:"JPEG",png:"PNG",webp:"WebP",gif:"GIF",bmp:"BMP",avif:"AVIF",heic:"HEIC"}[e&&e.fmt]||"";
+switch(e&&e.code){
+case"empty":return n+" : fichier vide (0 octet). Choisissez la photo à nouveau.";
+case"corrupt":return n+" : fichier "+(f?f+" ":"")+"corrompu ou incomplet, impossible à lire. Réenregistrez-le ou choisissez-en un autre.";
+case"unsupported":return n+" : format non pris en charge. Utilisez JPEG, PNG ou WebP.";
+case"heic":return n+" : format HEIC non lisible sur cet appareil et le convertisseur n’a pas pu être chargé (connexion ?). Réessayez en ligne ou choisissez JPEG, PNG ou WebP.";
+case"canvas":return n+" : l’appareil n’a pas assez de mémoire pour traiter cette photo. Essayez une photo plus petite.";
+case"big":return n+" : photo trop lourde, même après compression (2 Mo maximum).";
+default:return n+" : lecture impossible."}}
+function supaWhy(e,bk){const m=String((e&&(e.message||e.error))||""),c=String((e&&(e.statusCode||e.status))||"");
+if(/bucket not found/i.test(m)||c==="404")return"Bucket Supabase « "+bk+" » introuvable : créez-le (public) avec le script SQL fourni.";
+if(/row-level security|policy|not authorized|unauthorized/i.test(m)||c==="403"||c==="401")return"Supabase refuse l’envoi (droits RLS) : ajoutez les policies Storage du script SQL fourni et vérifiez que vous êtes bien connecté.";
+if(/payload too large|exceeded|too large/i.test(m)||c==="413")return"Fichier refusé par Supabase (trop gros) : vérifiez la limite de taille du bucket « "+bk+" ».";
+if(/mime|content.?type/i.test(m))return"Type de fichier refusé par le bucket « "+bk+" » : autorisez image/jpeg.";
+if(/failed to fetch|network|load failed/i.test(m))return"Réseau indisponible : l’envoi des photos a échoué. Réessayez.";
+return"Envoi des photos impossible"+(m?" ("+m+")":"")+"."}
+const b2d=b=>new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(b)});
+async function imgPick(kind,inp){const f=inp.files&&inp.files[0];if(!f)return;
+try{const b=await imgProc(f,IMX[kind][0],IMX[kind][1]);if(b.size>2e6)throw imgErr("big");if(IMG[kind])URL.revokeObjectURL(IMG[kind].url);IMG[kind]={blob:b,url:URL.createObjectURL(b)};const el=$("#pv_"+kind);if(el)el.innerHTML=`<img src="${IMG[kind].url}" alt="">`;toast("Image prête : pensez à enregistrer")}catch(e){toast(imgWhy(e,f.name))}finally{try{inp.value=""}catch(x){}}}
+async function imgSave(kind,b){if(!sb)return b2d(b);const pth=U.id+"/"+kind+".jpg",{error}=await sb.storage.from("boutiques").upload(pth,b,{upsert:true,contentType:"image/jpeg",cacheControl:"3600"});if(error)throw error;return sb.storage.from("boutiques").getPublicUrl(pth).data.publicUrl+"?v="+Date.now()}
+const FL=["nom","description","vendeur_nom","telephone","whatsapp","email","pays","ville","commune","quartier","adresse"],TEL=/^[+\d][\d\s.()-]{7,}$/;
+function shopDraft(){const d={owner_id:U.id},c=shopOf(U.id)||{};FL.forEach(k=>{const e=$("#sh_"+k);d[k]=e?e.value.trim():(c[k]||"")});d.logo_url=c.logo_url||null;d.cover_url=c.cover_url||null;d.publie=!!c.publie;
+const bad=d.nom.length<2?"Indiquez le nom de votre boutique":!d.vendeur_nom?"Indiquez votre nom complet":!TEL.test(d.telephone)?"Numéro de téléphone invalide":d.whatsapp&&!TEL.test(d.whatsapp)?"Numéro WhatsApp invalide":d.email&&!/^\S+@\S+\.\S+$/.test(d.email)?"Adresse e-mail invalide":d.description.length>500?"Description : 500 caractères maximum":"";
+if(bad){toast(bad);return null}return d}
+async function shopCommit(d,pub){if(!okV())return false;try{if(IMG.logo)d.logo_url=await imgSave("logo",IMG.logo.blob);if(IMG.cover)d.cover_url=await imgSave("cover",IMG.cover.blob)}catch(e){toast("Envoi de l’image impossible");return false}
+d.owner_id=U.id;d.publie=pub;d.updated_at=new Date().toISOString();
+if(sb){const{error}=await sb.from("boutiques").upsert(d,{onConflict:"owner_id"});if(error){toast("Enregistrement impossible");return false}await sb.from("produits").update({boutique_nom:d.nom}).eq("vendeur_id",U.id)}
+const i=SH.findIndex(x=>x.owner_id===U.id);i<0?SH.push(d):SH[i]=d;
+Object.assign(U,{shop:d.nom,n:d.vendeur_nom,tel:d.telephone,email:d.email||U.email});const av=AV.find(x=>x.id===U.id);if(av)av.n=d.nom;
+P.forEach(p=>{if(p.vid===U.id)p.s=esc(d.nom)});Object.values(IMG).forEach(m=>m&&URL.revokeObjectURL(m.url));IMG={};PV=null;return true}
+async function shopSaveBtn(){const d=shopDraft();if(!d)return;const c=shopOf(U.id);if(await shopCommit(d,!!(c&&c.publie))){toast("Boutique enregistrée");render()}}
+function shopPreview(){const d=shopDraft();if(!d)return;PV=d;go("v-apercu")}
+async function shopPub(){if(!PV)return;if(await shopCommit(PV,true)){toast("Boutique publiée");go("c-boutique-"+U.id)}}
+async function shopUnpub(){const c=shopOf(U.id);if(!c||!confirm("Retirer votre boutique de la vitrine publique ?"))return;if(await shopCommit({...c},false)){toast("Boutique dépubliée");render()}}
+function shopLink(){const l=location.href.split("#")[0]+"#c-boutique-"+U.id;(navigator.clipboard?navigator.clipboard.writeText(l):Promise.reject()).then(()=>toast("Lien copié"),()=>prompt("Copiez le lien de votre boutique",l))}
+async function pubLoad(){if(!sb||!LEGACY)return;const[a,b,c]=await Promise.all([sb.from("boutiques").select("*"),sb.from("produits").select("*").order("created_at",{ascending:false}),sb.from("reseaux_sociaux").select("*")]);if(a.error||b.error){toast("Chargement impossible");return}
+SH=a.data;RS={};if(!c.error)(c.data||[]).forEach(r=>{RS[r.owner_id]=r});const nm=id=>{const h=SH.find(x=>x.owner_id===id);return h&&h.publie?h.nom:null};
+P=b.data.map(r=>({id:r.id,n:esc(r.nom),p:r.prix,o:r.ancien_prix||0,e:r.emoji||"📦",s:esc(nm(r.vendeur_id)||r.boutique_nom),k:r.categorie,d:esc(r.description),vid:r.vendeur_id,im:(Array.isArray(r.images)?r.images:[]).map(safeImg).filter(Boolean)}));
+VP=U&&U.type==="vendeur"?b.data.filter(r=>r.vendeur_id===U.id).map(r=>({pid:r.id,vid:r.vendeur_id,n:esc(r.nom),p:r.prix,st:r.stock,e:r.emoji||"📦",im:(Array.isArray(r.images)?r.images:[]).map(safeImg).filter(Boolean)})):[];render()}
+function shopPage(h,pr,id,prev){if(!h)return `<div class="card"><div class="row"><div class="th">🏪</div><div class="f"><b>${(pr[0]||{}).s||"Boutique"}</b><small>Boutique MEGASTORE</small></div></div></div>${grid(pr)}`;
+const lg=safeImg(prev&&IMG.logo?IMG.logo.url:h.logo_url),cv=safeImg(prev&&IMG.cover?IMG.cover.url:h.cover_url),w=waNum(h.whatsapp,h.pays),loc=[h.quartier,h.commune,h.ville,h.pays].filter(Boolean).map(esc).join(", "),tl=String(h.telephone||"").replace(/[^\d+]/g,"");
+return `<div class="cv" style="margin-top:14px">${cv?`<img src="${cv}" alt="">`:""}</div><div class="shh"><div class="lg">${lg?`<img src="${lg}" alt="">`:"🏪"}</div><div class="f"><h1 style="margin:0 0 2px">${esc(h.nom)}</h1><small>${loc}</small></div></div>${h.description?`<p style="margin:14px 0;white-space:pre-line">${esc(h.description)}</p>`:""}${w?`<a class="wv" href="https://wa.me/${w}?text=${encodeURIComponent("Bonjour, je vous contacte depuis MEGASTORE.")}" target="_blank" rel="noopener noreferrer">Contacter sur WhatsApp</a>`:""}
+<div class="card" style="margin-top:12px"><b>Contact et localisation</b><div style="margin-top:6px"><div class="ct"><span>Vendeur</span><b>${esc(h.vendeur_nom)}</b></div>${tl?`<div class="ct"><span>Téléphone</span><a href="tel:${esc(tl)}">${esc(h.telephone)}</a></div>`:""}${h.whatsapp?`<div class="ct"><span>WhatsApp</span><b>${esc(h.whatsapp)}</b></div>`:""}${h.email?`<div class="ct"><span>E-mail</span><a href="mailto:${esc(h.email)}">${esc(h.email)}</a></div>`:""}${loc?`<div class="ct"><span>Localisation</span><b style="text-align:right">${loc}</b></div>`:""}${h.adresse?`<div class="ct"><span>Adresse / repère</span><b style="text-align:right">${esc(h.adresse)}</b></div>`:""}</div></div>${socialBar(id)}<h2>Produits (${pr.length})</h2>${grid(pr)}`}
+const shopCard=()=>{const h=shopOf(U.id),lg=h&&safeImg(h.logo_url);return `<div class="card"><div class="row" style="border:0;padding:0"><div class="lg" style="width:52px;height:52px;font-size:26px;border:0">${lg?`<img src="${lg}" alt="">`:"🏪"}</div><div class="f"><b>${esc(h?h.nom:U.shop)}</b><small>${h&&h.publie?"Boutique publiée":"Boutique non publiée"}</small></div><button class="b" onclick="go('v-boutique')">Ma boutique</button></div></div>`};
+const hist=()=>{const m=SUBS.filter(x=>x.vendeur_id===U.id);return m.length?`<h2>Mes demandes</h2><div class="card">${m.map(x=>`<div class="row"><div class="f"><b>${PL[x.formule].n}</b><small>${F(x.prix)} · demandé le ${dt(x.created_at)}</small></div>${tg(PS[x.statut_paiement])}</div>`).join("")}</div>`:""};
+const NAV={c:[["c-accueil","home","Accueil"],["c-categories","grid","Catégories"],["c-favoris","heart","Favoris"],["c-panier","bag","Panier"],["c-profil","user","Profil"]],v:[["v-accueil","chart","Ventes"],["v-produits","box","Produits"],["v-commandes","list","Commandes"],["v-abo","store","Abonnements"],["v-compte","cog","Compte"]],a:[["a-accueil","chart","Général"],["a-clients","user","Clients"],["a-vendeurs","store","Vendeurs"],["a-commandes","list","Commandes"],["a-abos","check","Abonnements"]]};
+const SUB={c:[["c-commandes","Mes commandes"],["c-recherche","Tous les produits"]],v:[["v-ajout","＋ Produit"],["v-clients","Clients"],["v-stats","Statistiques"],["v-boutique","Ma boutique"],["v-reseaux","Réseaux sociaux"]],a:[["a-boutiques","Boutiques"],["a-produits","Produits"],["a-categories","Catégories"],["a-stats","Statistiques"]]};
+const pc=(p,i)=>`<div class="pc" style="--i:${i}" onclick="op(${p.id})"><div class="pi">${thm(p)}${p.o?`<span class="bd">−${Math.round(100-p.p/p.o*100)} %</span>`:""}<button class="fv ${fav[p.id]?"on":""}" onclick="event.stopPropagation();tf(${p.id},this)">${ic("heart",18)}</button></div><div class="pb"><div class="pn">${p.n}</div><small>${p.s}</small><div class="pr"><b>${F(p.p)}</b>${p.o?`<s>${F(p.o)}</s>`:""}</div><button class="b" onclick="event.stopPropagation();add(${p.id})">Ajouter</button></div></div>`;
+const grid=a=>a.length?`<div class="grid">${a.map(pc).join("")}</div>`:`<div class="card empty">Aucun produit disponible pour le moment<br><button class="b2" style="margin-top:10px" onclick="go('${U&&U.type==="vendeur"?"v-ajout":"c-inscription"}')">Vendeur ? Ajoutez votre produit</button></div>`;
+const kp=(l,v,i=0)=>`<div class="kp" style="animation-delay:${i*60}ms"><small>${l}</small><b>${v}</b></div>`;
+const tg=s=>`<span class="tg ${/attente|Essai|préparation|déclaré|Brouillon/.test(s)?"w":/Expiré|Suspendu|Annulée|Refusé/.test(s)?"x":""}">${s}</span>`;
+const bars=(a,l)=>`<div class="bar">${a.map((h,i)=>`<div><i data-h="${h}"></i>${l[i]}</div>`).join("")}</div>`;
+const live=()=>{Object.keys(cart).forEach(k=>{if(!G(k))delete cart[k]});return Object.keys(cart)};
+const sub=()=>live().reduce((a,i)=>a+G(i).p*cart[i],0);
+function op(i){sel=i;qty=1;pic=0;go("c-produit")}
+function add(i,n=1){cart[i]=(cart[i]||0)+n;upd();toast("Ajouté au panier");const b=$("#cb");b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump")}
+function tf(i,el){fav[i]=!fav[i];el&&el.classList.toggle("on",fav[i]);upd();toast(fav[i]?"Ajouté aux favoris":"Retiré des favoris");if(R()==="c-favoris")render()}
+function upd(){const n=Object.values(cart).reduce((a,b)=>a+b,0);$("#cb").innerHTML=ic("bag",24)+(n?`<span class="cnt">${n}</span>`:"")}
+function toast(m){const t=$("#t");t.textContent=m;t.classList.add("s");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("s"),1700)}
+function q(i,d){cart[i]+=d;if(cart[i]<=0)delete cart[i];upd();render()}
+const R=()=>{const h=(location.hash||"#c-accueil").slice(1),m=/^c-boutique-(.+)$/.exec(h);if(m){shopId=decodeURIComponent(m[1]);return "c-boutique"}return h};
+function slide(n){cur=(n+3)%3;const t=$(".tr");if(!t)return;t.style.transform=`translateX(-${cur*100}%)`;document.querySelectorAll(".dots i").forEach((d,i)=>d.classList.toggle("on",i===cur))}
+function pay(){if(!U){nxt="c-commande";go("c-connexion");return}if(!$("#nm").value||!$("#tel").value){toast("Nom et téléphone requis");return}const ks=live(),t=sub()+1500,id=nid++;H.unshift({id:"M-"+(2000+id),d:"Aujourd’hui",t,s:"En attente"});O.unshift({id:"D-"+(1000+id),c:$("#nm").value,n:ks.map(i=>G(i).n).join(", "),t,s:"En attente",v:$("#vl").value||"Abidjan"});cart={};upd();go("c-confirmation")}
+function fin(a){subsLoad();pubLoad();const t=nxt;nxt="";go(a.type==="vendeur"?(t&&t[0]==="v"?t:"v-accueil"):(t&&t[0]==="c"&&t!=="c-connexion"&&t!=="c-inscription"?t:"c-accueil"))}
+function authWhy(e){const m=String(e&&e.message||"");
+if(/invalid login/i.test(m))return"E-mail ou mot de passe incorrect.";
+if(/not confirmed/i.test(m))return"Adresse e-mail non confirmée : ouvrez le lien reçu par e-mail.";
+if(/already registered|already been registered/i.test(m))return"Un compte existe déjà avec cette adresse e-mail.";
+if(/rate limit|too many/i.test(m))return"Trop de tentatives. Patientez quelques minutes puis réessayez.";
+if(/password/i.test(m)&&/(short|least|weak)/i.test(m))return"Mot de passe trop faible (6 caractères minimum).";
+if(/fetch|network|load failed/i.test(m))return"Réseau indisponible. Vérifiez votre connexion.";
+return"Opération impossible"+(m?" ("+m+")":"")+"."}
+async function loadProfile(au){const{data:p}=await sb.from("profiles").select("*").eq("id",au.id).maybeSingle();
+const n=(p&&p.full_name)||(au.user_metadata&&au.user_metadata.full_name)||"",role=p?p.role:"client",a={id:au.id,n,tel:(p&&p.phone)||"",email:au.email,role,type:role==="vendeur"?"vendeur":"client",shop:"Boutique de "+n};
+if(role==="vendeur"){const{data:q}=await sb.rpc("my_subscription"),x=Array.isArray(q)?q[0]:q;a.trialStart=Date.now();a.trialEnd=x&&x.expires_at?+new Date(x.expires_at):0}
+return a}
+async function login(){const id=$("#li").value.trim(),pw=$("#lp").value,er=$("#le");er.textContent="";
+if(!id||!pw){er.textContent="Renseignez vos identifiants.";return}
+if(!sb){er.textContent="Service indisponible : connexion impossible pour le moment.";return}
+if(!/^\S+@\S+\.\S+$/.test(id)){er.textContent="Connectez-vous avec votre adresse e-mail.";return}
+const{data,error}=await sb.auth.signInWithPassword({email:id,password:pw});
+if(error){er.textContent=authWhy(error);return}
+U=await loadProfile(data.user);toast("Connexion réussie");fin(U)}
+function setTy(t){rty=t;$("#t1").classList.toggle("on",t==="client");$("#t2").classList.toggle("on",t==="vendeur")}
+async function reg(){const n=$("#rn").value.trim(),t=$("#rt").value.replace(/\s/g,""),e=$("#re").value.trim(),p=$("#rp").value,er=$("#rr");er.textContent="";
+if(!n||!t||!e||!p){er.textContent="Tous les champs sont obligatoires.";return}if(!/^\S+@\S+\.\S+$/.test(e)){er.textContent="Adresse e-mail invalide.";return}if(p.length<6){er.textContent="Mot de passe : 6 caractères minimum.";return}if(p!==$("#rc").value){er.textContent="Les mots de passe ne correspondent pas.";return}
+if(!sb){er.textContent="Service indisponible : inscription impossible pour le moment.";return}
+const{data,error}=await sb.auth.signUp({email:e,password:p,options:{data:{full_name:n,phone:t,role:rty==="vendeur"?"vendeur":"client"}}});
+if(error){er.textContent=authWhy(error);return}
+if(data.user&&data.user.identities&&!data.user.identities.length){er.textContent="Un compte existe déjà avec cette adresse e-mail.";return}
+if(!data.session){er.textContent="Compte créé. Confirmez votre adresse e-mail grâce au lien reçu, puis connectez-vous.";return}
+U=await loadProfile(data.user);toast("Compte créé");fin(U)}
+async function out(){if(sb){try{await sb.auth.signOut()}catch(e){}}U=null;nxt="";toast("Déconnecté");go("c-accueil")}
+async function resetPw(){const e=$("#fe").value.trim(),er=$("#fr");if(!/^\S+@\S+\.\S+$/.test(e)){er.textContent="Saisissez votre adresse e-mail.";return}
+const{error}=await sb.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});
+er.style.color=error?"":"inherit";er.textContent=error?authWhy(error):"Si cette adresse existe, un lien de réinitialisation vient d’être envoyé."}
+async function setNewPw(){const p=$("#np").value,er=$("#nr");if(p.length<6){er.textContent="Mot de passe : 6 caractères minimum.";return}if(p!==$("#nc").value){er.textContent="Les mots de passe ne correspondent pas.";return}
+const{error}=await sb.auth.updateUser({password:p});if(error){er.textContent=authWhy(error);return}toast("Mot de passe modifié");go("c-accueil")}
+async function stk(i,d){if(!okV()||!own(i))return;const v=VP[i],n=Math.max(0,v.st+d);if(sb){const{error}=await sb.from("produits").update({stock:n}).eq("id",v.pid);if(error){toast("Modification refusée");return}}v.st=n;render()}
+async function ep(i){if(!okV()||!own(i))return;const v=VP[i],x=prompt("Nouveau prix (FCFA)",v.p);if(!(x&&+x>0))return;const n=Math.round(+x);if(sb){const{error}=await sb.from("produits").update({prix:n}).eq("id",v.pid);if(error){toast("Modification refusée");return}}v.p=n;const p=G(v.pid);if(p)p.p=n;render();toast("Produit modifié")}
+async function dp(i){if(!okV()||!own(i))return;if(!confirm("Supprimer ce produit ?"))return;const v=VP[i];if(sb){const{error}=await sb.from("produits").delete().eq("id",v.pid);if(error){toast("Suppression refusée");return}}P=P.filter(p=>p.id!==v.pid);VP.splice(i,1);render();toast("Produit supprimé")}
+const L={
+"c-accueil":()=>{const f=P.filter(p=>kf==="Tous"||p.k===kf),sn=SHN();return `<div class="hero"><div class="tr">${[["Tout le commerce, au même endroit.","Découvrez les boutiques de Côte d’Ivoire","🛍️","c-recherche","Découvrir"],["Livraison partout","Payez à la réception de votre colis","📦","c-recherche","Voir les produits"],["Vous êtes commerçant ?","Ouvrez votre boutique : 3 jours d’essai gratuit","🏪","c-inscription","Devenir vendeur"]].map(s=>`<div class="sl"><div><h3>${s[0]}</h3><p>${s[1]}</p><button onclick="go('${s[3]}')">${s[4]}</button></div><div class="e">${s[2]}</div></div>`).join("")}</div></div><div class="dots"><i class="on"></i><i></i><i></i></div>
+<h2>Catégories <small onclick="go('c-categories')">Tout voir</small></h2><div class="chips">${["Tous",...CT.map(c=>c[0])].map(c=>`<span class="chip ${c===kf?"on":""}" onclick="kf='${c}';render()">${c}</span>`).join("")}</div>
+<h2>Produits populaires</h2>${grid(f.slice(0,4))}<h2>Promotions</h2>${grid(f.filter(p=>p.o).slice(0,4))}
+<h2>Boutiques recommandées</h2>${SHL().length?SHL().map(id=>{const h=shopOf(id),pr=P.filter(p=>p.vid===id),pu=h&&h.publie,lg=pu&&safeImg(h.logo_url);return `<div class="card"><div class="row"><div class="lg" style="width:44px;height:44px;font-size:24px;border:0;border-radius:10px">${lg?`<img src="${lg}" alt="">`:"🏪"}</div><div class="f"><b>${pu?esc(h.nom):pr[0].s}</b><small>${pr.length} produit(s)</small></div><button class="b2" onclick="go('c-boutique-${id}')">Visiter</button></div></div>`}).join(""):`<div class="card empty">Aucune boutique pour le moment</div>`}<h2>Nouveautés</h2>${grid(f.slice().reverse().slice(0,4))}`},
+"c-categories":()=>`<h1>Catégories</h1><div class="cg">${CT.map(c=>`<div class="cc" onclick="kf='${c[0]}';go('c-recherche')"><span>${c[1]}</span>${c[0]}</div>`).join("")}</div>`,
+"c-recherche":()=>{const f=P.filter(p=>(kf==="Tous"||p.k===kf)&&(p.n+p.s).toLowerCase().includes(qs.toLowerCase()));return `<h1>${kf==="Tous"?"Produits":kf} (${f.length})</h1><div class="chips">${["Tous",...CT.map(c=>c[0])].map(c=>`<span class="chip ${c===kf?"on":""}" onclick="kf='${c}';render()">${c}</span>`).join("")}</div><br>${grid(f)}`},
+"c-boutique":()=>{const h=shopOf(shopId);return shopPage(h&&h.publie?h:null,P.filter(p=>p.vid===shopId),shopId)},
+"c-produit":()=>{const p=G(sel);if(!p)return `<h1>Produit introuvable</h1><button class="b" onclick="go('c-accueil')">Retour</button>`;return `<div class="pg"><div>${gal(p)}</div><div><h1 style="margin-top:0">${p.n}</h1><div class="pr"><b style="font-size:22px;color:var(--g)">${F(p.p)}</b>${p.o?`<s> ${F(p.o)}</s>`:""}</div><p style="margin:8px 0">${p.d||"Aucune description."}</p><b>Variante</b><div class="chips" style="margin:6px 0">${["Noir","Vert","Blanc"].map(v=>`<span class="chip ${v===vv?"on":""}" onclick="vv='${v}';render()">${v}</span>`).join("")}</div><div class="card" onclick="go('c-boutique-'+G(${p.id}).vid)" style="cursor:pointer"><b>${p.s}</b><small style="display:block;opacity:.65">Disponible · Voir la boutique ›</small></div><div class="row" style="border:0">Quantité <button onclick="qty=Math.max(1,qty-1);render()">−</button><b>${qty}</b><button onclick="qty++;render()">+</button></div><div class="ok">Paiement à la livraison disponible</div><div style="display:flex;gap:8px"><button class="b2" style="flex:1" onclick="add(${p.id},qty)">Ajouter au panier</button><button class="b" style="flex:1" onclick="add(${p.id},qty);go('c-commande')">Commander</button></div></div></div>`},
+"c-favoris":()=>`<h1>Mes favoris</h1>${P.some(p=>fav[p.id])?grid(P.filter(p=>fav[p.id])):`<div class="card empty">Aucun favori pour le moment</div>`}`,
+"c-panier":()=>{const k=live();if(!k.length)return `<h1>Mon panier</h1><div class="card empty">Votre panier est vide<br><button class="b2" style="margin-top:10px" onclick="go('c-accueil')">Découvrir les produits</button></div>`;return `<h1>Mon panier</h1><div class="card">${k.map(i=>`<div class="row"><div class="th">${thm(G(i))}</div><div class="f"><b>${G(i).n}</b><small>${F(G(i).p)}</small></div><button onclick="q(${i},-1)">−</button><b>${cart[i]}</b><button onclick="q(${i},1)">+</button></div>`).join("")}</div><div class="row"><b class="f">Sous-total</b><b>${F(sub())}</b></div><button class="b" style="width:100%" onclick="go('c-commande')">Passer la commande</button>${U?"":`<p style="text-align:center;margin-top:8px;font-size:13px;opacity:.7">Connexion requise pour commander</p>`}`},
+"c-commande":()=>live().length?`<h1>Commande</h1><div class="pg"><div class="fm"><input id="nm" value="${U?U.n:""}" placeholder="Nom complet"><input id="tel" type="tel" value="${U?U.tel:""}" placeholder="Numéro de téléphone"><input id="vl" placeholder="Ville"><input placeholder="Commune"><input placeholder="Quartier"><input placeholder="Adresse ou point de repère"><textarea placeholder="Instructions de livraison (facultatif)"></textarea></div><div class="card"><b>Récapitulatif</b>${live().map(i=>`<div class="row"><span class="f">${G(i).n} × ${cart[i]}</span>${F(G(i).p*cart[i])}</div>`).join("")}<div class="row"><span class="f">Livraison</span>${F(1500)}</div><div class="row"><b class="f">Total à payer</b><b style="color:var(--g)">${F(sub()+1500)}</b></div><div class="ok">Paiement à la livraison. Payez votre commande à la réception de votre colis.</div><button class="b" style="width:100%" onclick="pay()">Confirmer la commande (démo)</button></div></div>`:`<h1>Commande</h1><div class="card empty">Votre panier est vide</div>`,
+"c-confirmation":()=>`<div style="text-align:center"><div class="chk">${ic("check",42)}</div><h1>Commande enregistrée (démo)</h1><p>Aucune vraie commande ni aucun paiement.<br>Vous paierez à la livraison.</p><br><button class="b" onclick="go('c-commandes')">Voir mes commandes</button></div>`,
+"c-commandes":()=>`<h1>Mes commandes</h1>${H.length?`<div class="card">${H.map(o=>`<div class="row"><div class="f"><b>${o.id}</b><small>${o.d}</small></div>${F(o.t)} ${tg(o.s)}</div>`).join("")}</div>`:`<div class="card empty">Aucune commande pour le moment</div>`}`,
+"c-profil":()=>`<div class="card"><div class="row"><div class="th">👤</div><div class="f"><b>${U.n}</b><small>${U.tel} · ${U.email}</small></div>${tg(U.type==="vendeur"?"Vendeur":"Client")}</div></div><div class="fm"><button onclick="go('c-commandes')">Historique des commandes</button><button onclick="go('c-favoris')">Mes favoris</button>${U.type==="vendeur"?`<button class="b" onclick="go('v-accueil')">Mon espace vendeur</button>`:""}<button class="dg" onclick="out()">Se déconnecter</button></div>`,
+"v-accueil":()=>`<h1>Bonjour ${U.n.split(" ")[0]}</h1>${trial()}${shopCard()}<div class="kg">${kp("Chiffre d’affaires",F(O.filter(o=>o.s==="Livrée").reduce((a,o)=>a+o.t,0)),0)}${kp("Commandes",O.length,1)}${kp("Produits",VP.filter(v=>v.vid===U.id).length,2)}${kp("En attente",O.filter(o=>o.s==="En attente").length,3)}</div><h2>Ventes de la semaine</h2><div class="card">${bars([0,0,0,0,0,0,0],["L","M","M","J","V","S","D"])}<small style="opacity:.6">Aucune vente pour le moment</small></div><h2>Dernières commandes</h2>${O.length?`<div class="card">${O.slice(0,3).map(o=>`<div class="row"><div class="f"><b>${o.c}</b><small>${o.n}</small></div>${tg(o.s)}</div>`).join("")}</div>`:`<div class="card empty">Aucune commande pour le moment</div>`}`,
+"v-produits":()=>`<h1>Produits et stock</h1><button class="b" onclick="go('v-ajout')">＋ Ajouter un produit</button><br><br>${VP.some(v=>v.vid===U.id)?`<div class="card">${VP.map((p,i)=>p.vid!==U.id?"":`<div class="row"><div class="th">${thm(p)}</div><div class="f"><b>${p.n}</b><small>${F(p.p)} · ${p.st?p.st+" en stock":"Rupture"}</small></div><button onclick="stk(${i},-1)">−</button><b>${p.st}</b><button onclick="stk(${i},1)">+</button><button onclick="ep(${i})">✎</button><button class="dg" onclick="dp(${i})">✕</button></div>`).join("")}</div>`:`<div class="card empty">Aucun produit disponible pour le moment<br><button class="b2" style="margin-top:10px" onclick="go('v-ajout')">Ajouter mon premier produit</button></div>`}`,
+"v-ajout":()=>`<h1>Ajouter un produit</h1><div id="ph_zone">${phHtml()}</div><div class="fm"><input id="pn" placeholder="Nom du produit"><input id="pp" type="number" placeholder="Prix (FCFA)"><input id="po" type="number" placeholder="Ancien prix si promotion (facultatif)"><input id="ps" type="number" placeholder="Stock"><select id="pk">${CT.map(c=>`<option>${c[0]}</option>`).join("")}</select><textarea id="pd" placeholder="Description"></textarea><button class="b" id="pbtn" onclick="addp()">Publier le produit</button></div>`,
+"v-commandes":()=>`<h1>Commandes</h1>${O.length?O.map((o,i)=>`<div class="card"><div class="row" style="border:0"><div class="f"><b>${o.id} · ${o.c}</b><small>${o.n} · ${o.v}</small></div><b>${F(o.t)}</b></div><select onchange="O[${i}].s=this.value;toast('Statut mis à jour');render()">${["En attente","En préparation","Livrée","Annulée"].map(s=>`<option ${s===o.s?"selected":""}>${s}</option>`).join("")}</select></div>`).join(""):`<div class="card empty">Aucune commande pour le moment</div>`}`,
+"v-clients":()=>`<h1>Clients</h1>${O.length?`<div class="card">${[...new Set(O.map(o=>o.c))].map(c=>`<div class="row"><div class="th">👤</div><b class="f">${c}</b></div>`).join("")}</div>`:`<div class="card empty">Aucun client pour le moment</div>`}`,
+"v-stats":()=>{const s=O.filter(o=>o.s==="Livrée").reduce((a,o)=>a+o.t,0);return `<h1>Statistiques</h1><div class="kg">${kp("Ventes",F(s))}${kp("Panier moyen",F(O.length?Math.round(s/O.length):0))}</div><div class="card" style="margin-top:10px">${bars([0,0,0,0,0,0,0],["1","2","3","4","5","6","7"])}<small style="opacity:.6">Aucune donnée pour le moment</small></div>`},
+"v-boutique":()=>{const c=PV||shopOf(U.id)||{},def={vendeur_nom:U.n,telephone:U.tel,email:U.email,nom:U.shop,pays:"Côte d’Ivoire"},v=k=>esc(c[k]!=null?c[k]:(def[k]||"")),lg=safeImg(IMG.logo?IMG.logo.url:c.logo_url),cv=safeImg(IMG.cover?IMG.cover.url:c.cover_url),pub=!!(shopOf(U.id)||{}).publie,I=(k,l,t)=>`<label class="lb">${l}<input id="sh_${k}" ${t?`type="${t}"`:""} value="${v(k)}"></label>`;
+return `<h1>Ma boutique</h1><div class="row" style="border:0;padding:0 0 8px"><span class="f">${tg(pub?"Publiée":"Brouillon, non publiée")}</span></div><div class="card"><b>Identité de la boutique</b><div class="cv" id="pv_cover" style="margin:10px 0">${cv?`<img src="${cv}" alt="">`:""}</div><label class="fb">Changer la photo de couverture<input type="file" accept="image/*" hidden onchange="imgPick('cover',this)"></label><div class="up"><div class="lg" id="pv_logo">${lg?`<img src="${lg}" alt="">`:"🏪"}</div><label class="fb">Importer ou modifier le logo<input type="file" accept="image/*" hidden onchange="imgPick('logo',this)"></label></div><div class="fm">${I("nom","Nom de la boutique")}<label class="lb">Description<textarea id="sh_description" rows="4" maxlength="500" placeholder="Présentez votre boutique en quelques lignes">${v("description")}</textarea></label></div></div><div class="card"><b>Informations du vendeur</b><div class="fm" style="margin-top:10px">${I("vendeur_nom","Nom complet du vendeur")}${I("telephone","Numéro de téléphone","tel")}${I("whatsapp","Numéro WhatsApp","tel")}${I("email","Adresse e-mail","email")}</div></div><div class="card"><b>Localisation</b><div class="fm" style="margin-top:10px">${I("pays","Pays")}${I("ville","Ville")}${I("commune","Commune")}${I("quartier","Quartier")}${I("adresse","Adresse précise ou point de repère")}</div></div><div class="fm"><button class="b" onclick="shopSaveBtn()">Enregistrer mes modifications</button><button class="b2" onclick="shopPreview()">Aperçu avant publication</button>${pub?`<button onclick="go('c-boutique-${U.id}')">Voir ma page publique</button><button onclick="shopLink()">Copier le lien de ma boutique</button><button class="dg" onclick="shopUnpub()">Dépublier ma boutique</button>`:""}</div>`},
+"v-reseaux":()=>rsPage(),
+"v-apercu":()=>{if(!PV)return L["v-boutique"]();const pub=!!(shopOf(U.id)||{}).publie;return `<div class="wn">Aperçu de votre page publique. ${pub?"Les modifications ne sont visibles des clients qu’après publication.":"Votre boutique n’est pas encore visible des clients."}</div>${shopPage(PV,P.filter(p=>p.vid===U.id),U.id,true)}<div style="display:flex;gap:8px;margin:16px 0"><button class="b2" style="flex:1" onclick="go('v-boutique')">Modifier</button><button class="b" style="flex:1" onclick="shopPub()">${pub?"Publier les modifications":"Publier ma boutique"}</button></div>`},
+"v-abo":()=>`<h1>Abonnements</h1><p style="opacity:.7;margin-bottom:12px">Gérez votre abonnement vendeur et choisissez une formule.</p>${subCard(1)}<h2>Nos formules</h2><div class="plans">${Object.keys(PL).map(planCard).join("")}</div>${wn()}${hist()}`,
+"v-souscrire":()=>{const q=PL[psel];if(!q)return L["v-abo"]();const a=acc(),ex=SUBS.find(x=>x.vendeur_id===U.id&&x.formule===psel&&open_(x)),dc=ex&&ex.statut_paiement==="declare",dbt=a.paid?"Après votre abonnement actuel ("+dt(a.fin)+")":"À la confirmation du paiement";return `<h1>Souscription</h1><div class="card"><small>Formule choisie</small><h2 style="margin:2px 0 10px">${q.n}</h2><div class="row"><span class="f">Prix</span><b style="color:var(--g)">${F(q.p)}</b></div><div class="row"><span class="f">Durée</span><b>${q.du}</b></div><div class="row"><span class="f">Début</span><b style="text-align:right">${dbt}</b></div><div class="row"><span class="f">Statut du paiement</span>${tg(ex?PS[ex.statut_paiement]:"Paiement en attente")}</div></div><div class="card stp"><b>Étape 1 · Payer avec Wave</b><small>Montant exact à payer : ${F(q.p)}. Le lien s’ouvre dans Wave ou dans un nouvel onglet.</small><a class="wv" href="${waveUrl(psel)}" target="_blank" rel="noopener noreferrer" onclick="wavePay(event,'${psel}')">Payer avec Wave</a></div><div class="card stp"><b>Étape 2 · Déclarer mon paiement</b>${dc?`<div class="wn">Paiement déjà déclaré${ex.reference_paiement?" (référence "+ex.reference_paiement+")":""}. En attente de vérification par l’administrateur.</div>`:`<small>Une fois le paiement effectué, appuyez sur le bouton ci-dessous.</small><input id="rf" placeholder="Référence de la transaction Wave (facultatif)"><button class="b" id="dc" style="width:100%;margin-top:8px" onclick="declare()">J’ai effectué mon paiement</button>`}<div style="margin-top:10px">${proof()}</div></div>${wn()}<button class="b2" id="cf" style="width:100%" onclick="subscribe()">Confirmer mon abonnement</button><small style="display:block;opacity:.65;margin:6px 0">Enregistre seulement votre demande, sans paiement.</small><button style="width:100%;margin-top:6px" onclick="go('v-abo')">Retour aux formules</button>`},
+"v-compte":()=>`<h1>Paramètres du compte</h1><div class="fm"><input value="${U.n}"><input value="${U.email}"><input value="${U.tel}"><button class="b" onclick="toast('Compte enregistré (démo)')">Enregistrer</button><button onclick="go('c-accueil')">Voir la marketplace</button><button class="dg" onclick="out()">Se déconnecter</button></div>`,
+"a-accueil":()=>`<div class="kg">${kp("Clients",AC.length,0)}${kp("Vendeurs",AV.length,1)}${kp("Commandes",O.length,2)}${kp("Revenus abonnements",F(SUBS.reduce((t,x)=>t+(x.prix_paye||0),0)),3)}</div><h2>Activité</h2><div class="card">${bars([0,0,0,0,0,0,0],["L","M","M","J","V","S","D"])}<small style="opacity:.6">Aucune donnée pour le moment</small></div>`,
+"a-clients":()=>`<h1>Clients</h1>${AC.length?`<div class="card">${AC.map((c,i)=>`<div class="row"><div class="f"><b>${c.n}</b><small>${c.v}</small></div>${tg(c.a?"Actif":"Suspendu")}<button onclick="AC[${i}].a^=1;render()">${c.a?"Suspendre":"Activer"}</button></div>`).join("")}</div>`:`<div class="card empty">Aucun client pour le moment</div>`}`,
+"a-vendeurs":()=>`<h1>Vendeurs</h1>${AV.length?`<div class="card">${AV.map((c,i)=>`<div class="row"><div class="f"><b>${c.n}</b><small>Abonnement : ${(u=>u?acc(u).st:c.pl)(ACC.find(x=>x.id===c.id))}</small></div>${tg(c.a?"Actif":"Suspendu")}<button onclick="AV[${i}].a^=1;render()">${c.a?"Suspendre":"Activer"}</button></div>`).join("")}</div>`:`<div class="card empty">Aucun vendeur pour le moment</div>`}`,
+"a-boutiques":()=>`<h1>Boutiques</h1>${AV.length?`<div class="card">${AV.map(s=>`<div class="row"><div class="th">🏪</div><div class="f"><b>${s.n}</b><small>${P.filter(p=>p.s===s.n).length} produit(s)</small></div>${tg(s.a?"Actif":"Suspendu")}</div>`).join("")}</div>`:`<div class="card empty">Aucune boutique pour le moment</div>`}`,
+"a-produits":()=>`<h1>Produits</h1>${P.length?`<div class="card">${P.map(p=>`<div class="row"><div class="th">${thm(p)}</div><div class="f"><b>${p.n}</b><small>${p.s} · ${F(p.p)}</small></div><button class="dg" onclick="P=P.filter(x=>x.id!==${p.id});VP=VP.filter(v=>v.pid!==${p.id});render()">Retirer</button></div>`).join("")}</div>`:`<div class="card empty">Aucun produit disponible pour le moment</div>`}`,
+"a-commandes":()=>`<h1>Commandes</h1>${O.length?`<div class="card">${O.map(o=>`<div class="row"><div class="f"><b>${o.id} · ${o.c}</b><small>${o.n}</small></div>${tg(o.s)}</div>`).join("")}</div>`:`<div class="card empty">Aucune commande pour le moment</div>`}`,
+"a-categories":()=>`<h1>Catégories</h1><div class="card">${CT.map((c,i)=>`<div class="row"><div class="th">${c[1]}</div><b class="f">${c[0]}</b><button class="dg" onclick="CT.splice(${i},1);render()">✕</button></div>`).join("")}</div><div style="display:flex;gap:8px"><input id="nc" placeholder="Nouvelle catégorie"><button class="b" onclick="const v=$('#nc').value;if(v){CT.push([v,'🏷️']);render()}">Ajouter</button></div>`,
+"a-abos":()=>{const pe=SUBS.filter(open_).sort((x,y)=>(y.statut_paiement==="declare")-(x.statut_paiement==="declare"));return `<h1>Abonnements</h1><h2>Paiements à vérifier</h2>${pe.length?pe.map(x=>`<div class="card"><div class="row" style="border:0"><div class="f"><b>${x.vendeur_nom||"Vendeur"}</b><small>${PL[x.formule].n} · ${F(x.prix)} · demandé le ${dt(x.created_at)}</small><small>${x.statut_paiement==="declare"?"Paiement déclaré le "+dt(x.declare_le)+(x.reference_paiement?" · réf. "+x.reference_paiement:""):"Paiement non encore déclaré par le vendeur"}</small></div>${tg(PS[x.statut_paiement])}</div><div style="display:flex;gap:8px"><button class="b" style="flex:1" onclick="if(confirm('Avez-vous bien reçu ${F(x.prix)} sur votre compte Wave ?'))subDec('${x.id}',1)">Confirmer le paiement</button><button class="dg" style="flex:1" onclick="subDec('${x.id}',0)">Refuser</button></div></div>`).join(""):`<div class="card empty">Aucun paiement à vérifier</div>`}<h2>Tous les abonnements</h2>${SUBS.length?`<div class="card">${SUBS.map(x=>`<div class="row"><div class="f"><b>${x.vendeur_nom||"Vendeur"}</b><small>${PL[x.formule].n}${x.date_expiration?" · expire le "+dt(x.date_expiration):""}</small></div>${tg(PS[x.statut_paiement])}</div>`).join("")}</div>`:`<div class="card empty">Aucun abonnement pour le moment</div>`}`},
+"a-stats":()=>`<h1>Statistiques générales</h1><div class="kg">${kp("Ventes totales",F(0))}${kp("Boutiques",AV.length)}</div><div class="card" style="margin-top:10px">${bars([0,0,0,0,0,0],["Jun","Jul","Aoû","Sep","Oct","Nov"])}<small style="opacity:.6">Aucune donnée pour le moment</small></div>`,
+"c-connexion":()=>`<div class="fm" style="max-width:420px;margin:24px auto"><h1 style="margin:0">Connexion</h1><p style="opacity:.7">Connectez-vous pour commander ou gérer votre boutique.</p><input id="li" type="email" placeholder="Adresse e-mail" autocomplete="username">${pw("lp","Mot de passe","current-password")}<div id="le" class="dg" style="font-size:13px"></div><button class="b" onclick="login()">Se connecter</button><a style="color:var(--g);cursor:pointer;text-align:center" onclick="go('c-oubli')">Mot de passe oublié ?</a><div style="text-align:center">Pas encore de compte ? <a style="color:var(--g);font-weight:600;cursor:pointer" onclick="go('c-inscription')">Créer un compte</a></div></div>`,
+"c-inscription":()=>`<div class="fm" style="max-width:420px;margin:24px auto"><h1 style="margin:0">Créer un compte</h1><input id="rn" placeholder="Nom complet"><input id="rt" type="tel" placeholder="Numéro de téléphone"><input id="re" type="email" placeholder="Adresse e-mail">${pw("rp","Mot de passe","new-password")}${pw("rc","Confirmer le mot de passe","new-password")}<b>Type de compte</b><div class="chips"><span class="chip ${rty==="client"?"on":""}" id="t1" onclick="setTy('client')">Client</span><span class="chip ${rty==="vendeur"?"on":""}" id="t2" onclick="setTy('vendeur')">Vendeur</span></div><div id="rr" class="dg" style="font-size:13px"></div><button class="b" onclick="reg()">Créer mon compte</button><div style="text-align:center"><a style="color:var(--g);font-weight:600;cursor:pointer" onclick="go('c-connexion')">J’ai déjà un compte</a></div></div>`,
+"c-oubli":()=>`<div class="fm" style="max-width:420px;margin:24px auto"><h1 style="margin:0">Mot de passe oublié</h1><input id="fe" type="email" placeholder="Adresse e-mail" autocomplete="email"><div id="fr" class="dg" style="font-size:13px"></div><button class="b" onclick="resetPw()">Envoyer le lien</button><a style="color:var(--g);cursor:pointer;text-align:center" onclick="go('c-connexion')">Retour à la connexion</a></div>`,
+"c-nouveau-mdp":()=>`<div class="fm" style="max-width:420px;margin:24px auto"><h1 style="margin:0">Nouveau mot de passe</h1>${pw("np","Nouveau mot de passe","new-password")}${pw("nc","Confirmer le mot de passe","new-password")}<div id="nr" class="dg" style="font-size:13px"></div><button class="b" onclick="setNewPw()">Enregistrer</button></div>`};
+function trial(){return subCard()}
+function render(){let r=R();if(!L[r])r="c-accueil";
+const need=/^(c-commande|c-commandes|c-profil|c-confirmation)$/.test(r)&&!U,vend=/^v-/.test(r)&&!(U&&U.type==="vendeur");
+if(need||vend){if(vend&&U){toast("Espace réservé aux comptes vendeur");r="c-accueil"}else{nxt=r;toast(need?"Connectez-vous pour commander":"Connectez-vous avec un compte vendeur");r="c-connexion"}}
+if(!need&&!vend&&/^v-(produits|ajout|commandes|clients|stats|boutique|reseaux|apercu)$/.test(r)&&!acc().ok){toast("Abonnement requis pour accéder à cette fonction");r="v-abo"}
+if(r!==R()){location.hash=r;return}
+const sp=(/^c-(connexion|inscription|oubli)$/.test(r)&&nxt&&nxt[0]==="v")?"v":r[0];
+$("#sw").innerHTML=[["c","Client"],["v","Vendeur"],["a","Admin"]].map(s=>`<button class="${s[0]===sp?"on":""}" onclick="nxt='';go('${s[0]}-accueil')">${s[1]}</button>`).join("");
+document.body.className=sp==="a"?"adm":"";if(sp==="a"&&sb&&!SL){SL=1;subsLoad()}
+$("#sr").innerHTML=sp==="c"?`${ic("search",18)}<input id="q" value="${qs}" placeholder="Rechercher un produit ou une boutique" onkeydown="if(event.key==='Enter'){qs=this.value;kf='Tous';go('c-recherche');render()}">`:`<b>${sp==="v"?"Espace vendeur":"Administration"}</b>`;
+$("#cb").style.display=sp==="c"?"":"none";
+$("#ub").innerHTML=U?`<button class="ibt" onclick="go('${U.type==="vendeur"?"v-accueil":"c-profil"}')" aria-label="Mon compte">${ic("user",24)}</button>`:`<button class="b" style="padding:7px 12px;font-size:13px" onclick="go('c-connexion')">Connexion</button>`;
+$("#bn").innerHTML=NAV[sp].map(n=>`<a class="${n[0]===r?"on":""}" onclick="go('${n[0]}')">${ic(n[1])}${n[2]}</a>`).join("");
+const ex=sp==="v"?SUB.v:sp==="a"?SUB.a:SUB.c;
+$("#app").innerHTML=`<div class="sub">${ex.map(s=>`<button class="${s[0]===r?"on":""}" onclick="go('${s[0]}')">${s[1]}</button>`).join("")}</div>`+L[r]();
+const m=$("#app");m.style.animation="none";void m.offsetWidth;m.style.animation="";window.scrollTo(0,0);
+clearInterval(tmr);if(r==="c-accueil")tmr=setInterval(()=>slide(cur+1),4500);
+setTimeout(()=>document.querySelectorAll("[data-h]").forEach(b=>b.style.height=b.dataset.h+"%"),50);upd()}
+addEventListener("hashchange",render);render();pubLoad();
+if(sb){sb.auth.onAuthStateChange((ev)=>{if(ev==="PASSWORD_RECOVERY")setTimeout(()=>go("c-nouveau-mdp"),0)});sb.auth.getSession().then(async({data})=>{if(data&&data.session&&!U){U=await loadProfile(data.session.user);render()}})}
+</script></body></html>
